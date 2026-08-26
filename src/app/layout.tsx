@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
+const themeScript = `try{const t=localStorage.getItem("theme");const d=t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light"}catch{}`;
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -41,12 +43,21 @@ export const metadata: Metadata = {
     title: "华仁的个人网站",
     description:
       "记录 C++ 服务端开发、Linux、网络编程和游戏服务器架构。",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "邹华仁 — C++ 服务端开发、Linux 与技术笔记",
+      },
+    ],
   },
   twitter: {
     card: "summary",
     title: "华仁的个人网站",
     description:
       "记录 C++ 服务端开发、Linux、网络编程和游戏服务器架构。",
+    images: ["/og.png"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -57,8 +68,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="zh-CN"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="min-h-full flex flex-col">
         <Header />
 

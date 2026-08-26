@@ -10,35 +10,31 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <div className="border-b border-white/10 pb-10">
-          <p className="text-sm font-medium text-emerald-400">
-            PROJECTS
-          </p>
+    <main className="mx-auto min-h-[calc(100svh-8.5rem)] w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
+      <header className="mb-12">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+          项目
+        </h1>
+        <p className="mt-3 text-zinc-500">
+          我正在开发和研究的项目，以及它们背后的思考与实现过程。
+        </p>
+      </header>
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            我的项目
-          </h1>
-
-          <p className="mt-5 max-w-2xl leading-8 text-zinc-400">
-            这里记录我开发和研究过的项目，包括 Web、
-            C++ 服务端以及后续的游戏服务器实践。
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard
-              key={project.href}
-              title={project.title}
-              description={project.description}
-              tech={project.tech}
-              href={project.href}
-              status={project.status}
-            />
-          ))}
-        </div>
+      <div>
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.href}
+            index={index + 1}
+            title={project.title}
+            description={project.description}
+            tech={project.tech}
+            href={project.href}
+            status={project.status}
+            eyebrow={project.eyebrow}
+            highlight={project.highlight}
+            architecture={project.architecture}
+          />
+        ))}
       </div>
     </main>
   );

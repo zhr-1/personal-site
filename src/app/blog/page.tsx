@@ -11,32 +11,28 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-4xl">
-        <div className="border-b border-white/10 pb-10">
-          <p className="text-sm font-medium text-emerald-400">BLOG</p>
+    <main className="mx-auto min-h-[calc(100svh-8.5rem)] w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
+      <header className="mb-12">
+        <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
+          博客
+        </h1>
+        <p className="mt-3 max-w-2xl leading-7 text-zinc-500">
+          关于 C++、Linux、网络编程、Docker，以及服务端开发过程中的学习和实践。
+        </p>
+      </header>
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            技术博客
-          </h1>
-
-          <p className="mt-5 max-w-2xl leading-8 text-zinc-400">
-            记录 C++、Linux、网络编程、Redis、MySQL、
-            Docker 和服务器开发过程中遇到的问题与实践。
-          </p>
-        </div>
-
-        <div className="mt-6">
-          {blogPosts.map((post) => (
-            <BlogCard
-              key={post.href}
-              title={post.title}
-              summary={post.summary}
-              date={post.date}
-              href={post.href}
-            />
-          ))}
-        </div>
+      <div>
+        {blogPosts.map((post, index) => (
+          <BlogCard
+            key={post.href}
+            index={index + 1}
+            title={post.title}
+            summary={post.summary}
+            date={post.date}
+            href={post.href}
+            topics={post.topics}
+          />
+        ))}
       </div>
     </main>
   );

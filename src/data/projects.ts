@@ -4,6 +4,9 @@ export type Project = {
   tech: string[];
   href: string;
   status: string;
+  eyebrow: string;
+  highlight: string;
+  architecture: string[];
 };
 
 export const projects: Project[] = [
@@ -14,6 +17,9 @@ export const projects: Project[] = [
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Docker"],
     href: "/projects/personal-site",
     status: "开发中",
+    eyebrow: "WEB / INFRASTRUCTURE",
+    highlight: "从本地开发到 Docker、Nginx 与云服务器部署的完整实践。",
+    architecture: ["Browser", "Nginx", "Docker", "Next.js"],
   },
   {
     title: "C++ 游戏服务器",
@@ -22,5 +28,8 @@ export const projects: Project[] = [
     tech: ["C++", "Linux", "Redis", "MySQL"],
     href: "/projects/game-server",
     status: "计划中",
+    eyebrow: "C++ / DISTRIBUTED SYSTEM",
+    highlight: "拆解网关、登录、游戏逻辑与数据层之间的职责边界。",
+    architecture: ["Gateway", "Login", "Game", "Storage"],
   },
 ];

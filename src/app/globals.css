@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fafafa;
+  --foreground: #27272a;
+  color-scheme: light;
+}
+
+html.dark {
+  --background: #18181b;
+  --foreground: #e4e4e7;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -12,11 +19,9 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -24,13 +29,85 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
   overflow-wrap: break-word;
-}
-
-html {
-  scroll-behavior: smooth;
-  overflow-x: hidden;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
 ::selection {
-  background: rgb(52 211 153 / 30%);
+  background: rgb(16 185 129 / 18%);
+}
+
+a,
+button,
+summary {
+  outline-offset: 4px;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(5 150 105);
+}
+
+.link-underline {
+  text-decoration: underline;
+  text-decoration-color: rgb(161 161 170 / 45%);
+  text-underline-offset: 4px;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.link-underline:hover {
+  color: rgb(5 150 105);
+  text-decoration-color: rgb(5 150 105 / 55%);
+}
+
+.link-arrow span {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.link-arrow:hover {
+  color: rgb(5 150 105);
+}
+
+.link-arrow:hover span {
+  transform: translateX(3px);
+}
+
+html.dark .text-zinc-900 {
+  color: #f4f4f5;
+}
+
+html.dark .text-zinc-800,
+html.dark .text-zinc-700 {
+  color: #e4e4e7;
+}
+
+html.dark .text-zinc-600,
+html.dark .text-zinc-500,
+html.dark .text-zinc-400 {
+  color: #a1a1aa;
+}
+
+html.dark .text-zinc-300 {
+  color: #71717a;
+}
+
+html.dark .border-zinc-200 {
+  border-color: #3f3f46;
+}
+
+html.dark .bg-zinc-100 {
+  background-color: #27272a;
+}
+
+html.dark .bg-white {
+  background-color: #18181b;
+}
+
+html.dark .hover\:text-zinc-800:hover {
+  color: #e4e4e7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function CppServerNotesPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-24 text-zinc-100">
+    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
       <article className="mx-auto max-w-3xl">
         <Link
           href="/blog"
@@ -19,7 +19,7 @@ export default function CppServerNotesPage() {
 
         <p className="mt-10 text-sm text-zinc-500">持续更新</p>
 
-        <h1 className="mt-4 text-4xl font-bold tracking-tight">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
           C++ 服务端开发笔记
         </h1>
 

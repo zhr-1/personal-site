@@ -1,8 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "我的第一个个人网站",
+  description: "记录个人网站从开发、Docker 容器化到腾讯云部署的完整过程。",
+};
 
 export default function MyFirstSiteArticle() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-24 text-zinc-100">
+    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
       <article className="mx-auto max-w-3xl">
         <p className="text-sm text-zinc-500">2026-08-23</p>
 
@@ -13,7 +19,7 @@ export default function MyFirstSiteArticle() {
             ← 返回博客
         </Link>
 
-        <h1 className="mt-4 text-4xl font-bold tracking-tight">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
           我的第一个个人网站
         </h1>
 

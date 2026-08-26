@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-24 text-zinc-100">
+    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-4xl">
         <div className="border-b border-white/10 pb-10">
           <p className="text-sm font-medium text-emerald-400">BLOG</p>

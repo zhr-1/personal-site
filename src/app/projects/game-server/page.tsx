@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function GameServerProjectPage() {
   return (
-    <main className="min-h-screen bg-zinc-950 px-6 py-24 text-zinc-100">
+    <main className="min-h-screen bg-zinc-950 px-5 py-16 text-zinc-100 sm:px-6 sm:py-24">
       <article className="mx-auto max-w-3xl">
         <Link
           href="/projects"

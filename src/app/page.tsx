@@ -8,7 +8,7 @@ import { blogPosts } from "@/data/blogPosts";
 export default function Home() {
   return (
     <main className="bg-zinc-950 text-zinc-100">
-      <section className="flex min-h-screen items-center justify-center px-6">
+      <section className="flex min-h-[calc(100svh-4rem)] items-center justify-center px-5 py-20 sm:px-6">
         <div className="w-full max-w-6xl">
           <p className="mb-4 text-sm font-medium text-emerald-400">
             C++ Server Developer
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="projects" className="px-6 py-24">
+      <section id="projects" className="scroll-mt-20 px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold">项目</h2>
 
@@ -55,7 +55,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="blog" className="px-6 py-24">
+      <section id="blog" className="scroll-mt-20 px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold">博客</h2>
 
@@ -84,7 +84,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="about" className="px-6 py-24">
+      <section id="about" className="scroll-mt-20 px-5 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <h2 className="text-3xl font-bold">关于我</h2>
 
@@ -132,5 +132,4 @@ export default function Home() {
     </main>
   );
 }
-
 

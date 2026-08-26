@@ -18,10 +18,10 @@ export default function ProjectCard({
   return (
     <Link
       href={href}
-      className="group block rounded-2xl border border-white/10 bg-zinc-900 p-6 transition hover:border-white/20 hover:bg-zinc-800/80"
+      className="group block min-w-0 rounded-2xl border border-white/10 bg-zinc-900 p-5 transition hover:border-white/20 hover:bg-zinc-800/80 sm:p-6"
     >
       <div className="flex items-start justify-between gap-4">
-        <h3 className="text-xl font-semibold">
+        <h3 className="min-w-0 text-xl font-semibold">
           {title}
         </h3>
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import BlogCard from "@/components/BlogCard";
-import { blogPosts } from "@/data/blogPosts";
+import { getAllPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "技术博客",
@@ -10,6 +10,8 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <main className="mx-auto min-h-[calc(100svh-8.5rem)] w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
       <header className="mb-12">
@@ -22,15 +24,15 @@ export default function BlogPage() {
       </header>
 
       <div>
-        {blogPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <BlogCard
-            key={post.href}
+            key={post.slug}
             index={index + 1}
             title={post.title}
-            summary={post.summary}
+            description={post.description}
             date={post.date}
-            href={post.href}
-            topics={post.topics}
+            href={`/blog/${post.slug}`}
+            tags={post.tags}
           />
         ))}
       </div>

@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://hrzou.com/sitemap.xml",
-    host: "https://hrzou.com",
+    sitemap: "https://hrzou.cn/sitemap.xml",
+    host: "https://hrzou.cn",
   };
 }

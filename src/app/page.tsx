@@ -1,8 +1,12 @@
 import Link from "next/link";
 
+import { getAllPosts } from "@/lib/blog";
+
 const focus = ["C++", "Linux", "网络编程", "Redis", "MySQL"];
 
 export default function Home() {
+  const latestPosts = getAllPosts().slice(0, 2);
+
   return (
     <main className="mx-auto flex min-h-[calc(100svh-8.5rem)] w-full max-w-3xl items-center px-5 py-14 sm:px-8 sm:py-20">
       <div className="w-full">
@@ -41,13 +45,41 @@ export default function Home() {
           <Link href="/projects" className="link-arrow text-zinc-700">
             查看项目 <span aria-hidden="true">→</span>
           </Link>
-          <Link href="/blog" className="link-arrow text-zinc-700">
-            阅读博客 <span aria-hidden="true">→</span>
-          </Link>
           <Link href="/about" className="link-arrow text-zinc-700">
             关于我 <span aria-hidden="true">→</span>
           </Link>
         </div>
+
+        <section className="mt-12" aria-labelledby="latest-posts-heading">
+          <div className="flex items-center justify-between gap-4">
+            <h2 id="latest-posts-heading" className="text-sm font-medium text-zinc-800">
+              最近文章
+            </h2>
+            <Link href="/blog" className="link-arrow text-xs text-zinc-400">
+              查看全部文章 <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
+          <div className="mt-3 border-y border-zinc-200">
+            {latestPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex items-baseline justify-between gap-5 border-b border-zinc-200 py-3 last:border-b-0"
+              >
+                <span className="text-sm text-zinc-600 transition group-hover:text-emerald-600">
+                  {post.title}
+                </span>
+                <time
+                  dateTime={post.date}
+                  className="shrink-0 font-mono text-xs text-zinc-400"
+                >
+                  {post.date}
+                </time>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   );

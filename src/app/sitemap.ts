@@ -1,23 +1,31 @@
 import type { MetadataRoute } from "next";
 
-const routes = [
+import { getAllPosts } from "@/lib/blog";
+
+const siteUrl = "https://hrzou.cn";
+const staticRoutes = [
   "",
   "/about",
   "/projects",
   "/projects/personal-site",
   "/projects/game-server",
   "/blog",
-  "/blog/my-first-site",
-  "/blog/cpp-server-notes",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date("2026-08-26");
-
-  return routes.map((route) => ({
-    url: `https://hrzou.com${route}`,
-    lastModified,
+  const staticPages: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
+    url: `${siteUrl}${route}`,
+    lastModified: new Date(),
     changeFrequency: route === "" ? "weekly" : "monthly",
     priority: route === "" ? 1 : route === "/projects" || route === "/blog" ? 0.8 : 0.6,
   }));
+
+  const blogPosts: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...blogPosts];
 }

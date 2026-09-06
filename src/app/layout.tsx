@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hrzou.com"),
+  metadataBase: new URL("https://hrzou.cn"),
   title: {
     default: "华仁的个人网站",
     template: "%s | 华仁的个人网站",

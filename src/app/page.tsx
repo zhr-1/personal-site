@@ -1,86 +1,118 @@
 import Link from "next/link";
 
+import BlogCard from "@/components/BlogCard";
+import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/blog";
 
-const focus = ["C++", "Linux", "网络编程", "Redis", "MySQL"];
+const focus = ["Linux", "Network Programming", "Game Server Architecture"];
 
 export default function Home() {
   const latestPosts = getAllPosts().slice(0, 2);
 
   return (
-    <main className="mx-auto flex min-h-[calc(100svh-8.5rem)] w-full max-w-3xl items-center px-5 py-14 sm:px-8 sm:py-20">
-      <div className="w-full">
-        <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
+    <main className="mx-auto w-full max-w-5xl px-5 py-12 sm:px-8 sm:py-20">
+      <section className="relative overflow-hidden py-8 sm:py-16" aria-labelledby="hero-heading">
+        <div
+          aria-hidden="true"
+          className="absolute right-0 top-2 -z-10 size-56 rounded-full bg-emerald-500/5 blur-3xl sm:size-80"
+        />
+
+        <p className="font-mono text-xs tracking-[0.24em] text-emerald-600">HELLO, I&apos;M</p>
+        <h1
+          id="hero-heading"
+          className="mt-4 text-5xl font-semibold tracking-[-0.05em] text-zinc-900 sm:text-7xl"
+        >
           邹华仁
         </h1>
-        <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-600">
-          你好，我是一名专注于 C++ 服务端开发的开发者。
-          我喜欢研究网络编程、数据存储和游戏服务器架构，也在这里记录项目与学习过程。
+        <p className="mt-5 text-xl font-medium tracking-tight text-zinc-800 sm:text-2xl">
+          C++ Server Developer
+        </p>
+        <p className="mt-5 max-w-2xl text-base leading-8 text-zinc-500 sm:text-lg">
+          专注于 C++ 服务端开发，持续学习 Linux、网络编程与游戏服务器架构。
+          这里记录我正在做的项目、技术实践和成长过程。
         </p>
 
-        <div className="mt-9 space-y-3 text-sm leading-7 text-zinc-600">
-          <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
-            <span className="w-20 shrink-0 text-zinc-400">正在学习</span>
-            <span>C++ 服务端、Linux 网络编程与并发模型</span>
-          </div>
-          <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
-            <span className="w-20 shrink-0 text-zinc-400">正在构建</span>
-            <span>
-              <Link href="/projects/game-server" className="link-underline text-zinc-800">
-                C++ 游戏服务器
-              </Link>
-              <span className="mx-2 text-zinc-300">·</span>
-              <Link href="/projects/personal-site" className="link-underline text-zinc-800">
-                个人技术网站
-              </Link>
-            </span>
-          </div>
-          <div className="flex flex-col gap-1 sm:flex-row sm:gap-4">
-            <span className="w-20 shrink-0 text-zinc-400">关注方向</span>
-            <span>{focus.join(" · ")}</span>
-          </div>
-        </div>
+        <ul className="mt-7 flex flex-wrap gap-2" aria-label="技术方向">
+          {focus.map((item) => (
+            <li
+              key={item}
+              className="rounded-full border border-zinc-200 bg-white/70 px-3 py-1.5 font-mono text-xs text-zinc-500 dark:bg-zinc-900/60"
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
 
-        <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm">
-          <Link href="/projects" className="link-arrow text-zinc-700">
-            查看项目 <span aria-hidden="true">→</span>
+        <div className="mt-9 flex flex-wrap gap-3">
+          <Link
+            href="/projects"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-zinc-900 px-5 text-sm font-medium text-white transition hover:bg-emerald-600 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-emerald-400"
+          >
+            查看项目
           </Link>
-          <Link href="/about" className="link-arrow text-zinc-700">
-            关于我 <span aria-hidden="true">→</span>
+          <Link
+            href="/blog"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg border border-zinc-200 px-5 text-sm font-medium text-zinc-700 transition hover:border-emerald-500/50 hover:text-emerald-600"
+          >
+            阅读博客
           </Link>
         </div>
+      </section>
 
-        <section className="mt-12" aria-labelledby="latest-posts-heading">
-          <div className="flex items-center justify-between gap-4">
-            <h2 id="latest-posts-heading" className="text-sm font-medium text-zinc-800">
+      <section className="mt-20 sm:mt-28" aria-labelledby="featured-projects-heading">
+        <div className="flex items-end justify-between gap-5">
+          <div>
+            <p className="font-mono text-xs tracking-[0.2em] text-emerald-600">PROJECTS</p>
+            <h2
+              id="featured-projects-heading"
+              className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
+            >
+              项目
+            </h2>
+          </div>
+          <Link href="/projects" className="link-arrow shrink-0 text-sm text-zinc-500">
+            查看全部项目 <span aria-hidden="true">→</span>
+          </Link>
+        </div>
+
+        <div className="mt-7 grid gap-5 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <ProjectCard key={project.href} {...project} index={index + 1} />
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-20 sm:mt-28" aria-labelledby="latest-posts-heading">
+        <div className="flex items-end justify-between gap-5">
+          <div>
+            <p className="font-mono text-xs tracking-[0.2em] text-emerald-600">BLOG</p>
+            <h2
+              id="latest-posts-heading"
+              className="mt-3 text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl"
+            >
               最近文章
             </h2>
-            <Link href="/blog" className="link-arrow text-xs text-zinc-400">
-              查看全部文章 <span aria-hidden="true">→</span>
-            </Link>
           </div>
+          <Link href="/blog" className="link-arrow shrink-0 text-sm text-zinc-500">
+            查看全部文章 <span aria-hidden="true">→</span>
+          </Link>
+        </div>
 
-          <div className="mt-3 border-y border-zinc-200">
-            {latestPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex items-baseline justify-between gap-5 border-b border-zinc-200 py-3 last:border-b-0"
-              >
-                <span className="text-sm text-zinc-600 transition group-hover:text-emerald-600">
-                  {post.title}
-                </span>
-                <time
-                  dateTime={post.date}
-                  className="shrink-0 font-mono text-xs text-zinc-400"
-                >
-                  {post.date}
-                </time>
-              </Link>
-            ))}
-          </div>
-        </section>
-      </div>
+        <div className="mt-7 grid gap-5 md:grid-cols-2">
+          {latestPosts.map((post, index) => (
+            <BlogCard
+              key={post.slug}
+              index={index + 1}
+              title={post.title}
+              description={post.description}
+              date={post.date}
+              href={`/blog/${post.slug}`}
+              tags={post.tags}
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

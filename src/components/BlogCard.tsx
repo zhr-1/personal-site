@@ -18,27 +18,35 @@ export default function BlogCard({
   index,
 }: BlogCardProps) {
   return (
-    <Link href={href} className="group block">
-    <article className="grid gap-3 border-b border-zinc-200 py-7 first:border-t sm:grid-cols-[2.5rem_1fr_auto] sm:gap-5">
-      <span className="hidden pt-1 font-mono text-xs text-zinc-300 sm:block">
-        {String(index).padStart(2, "0")}
-      </span>
-      <div>
-        <h2 className="text-xl font-medium text-zinc-800 transition group-hover:text-emerald-600">
+    <Link
+      href={href}
+      className="group block h-full rounded-xl border border-zinc-200 bg-white/60 p-5 transition duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-950/5 sm:p-6 dark:bg-zinc-900/40"
+    >
+      <article className="flex h-full flex-col">
+        <div className="flex items-center justify-between gap-4 font-mono text-xs text-zinc-400">
+          <span>{String(index).padStart(2, "0")}</span>
+          <time dateTime={date}>{date}</time>
+        </div>
+
+        <h2 className="mt-5 text-xl font-medium tracking-tight text-zinc-800 transition group-hover:text-emerald-600">
           {title}
         </h2>
-        <p className="mt-2 text-sm leading-7 text-zinc-500">{description}</p>
-        <div className="mt-3 flex flex-wrap gap-3 font-mono text-xs text-zinc-400">
-          {tags.map((tag) => (
-            <span key={tag}>#{tag}</span>
-          ))}
+        <p className="mt-3 flex-1 text-sm leading-7 text-zinc-500">{description}</p>
+
+        <div className="mt-5 flex items-end justify-between gap-4">
+          <div className="flex min-w-0 flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-zinc-400">
+            {tags.map((tag) => (
+              <span key={tag}>#{tag}</span>
+            ))}
+          </div>
+          <span
+            aria-hidden="true"
+            className="shrink-0 text-zinc-400 transition group-hover:translate-x-1 group-hover:text-emerald-600"
+          >
+            →
+          </span>
         </div>
-      </div>
-      <div className="flex items-start gap-4 text-xs text-zinc-400 sm:flex-col sm:items-end">
-        <span>{date}</span>
-        <span className="transition group-hover:translate-x-1 group-hover:text-emerald-600">→</span>
-      </div>
-    </article>
+      </article>
     </Link>
   );
 }

@@ -13,23 +13,23 @@ export const projects: Project[] = [
   {
     title: "个人技术网站",
     description:
-      "使用 Next.js、TypeScript 和 Tailwind CSS 开发的个人技术网站，用于展示项目、博客与技术经验。",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Docker"],
+      "用于展示项目、发布 Markdown 技术博客，并记录服务端开发学习过程的个人网站。",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Docker", "Nginx"],
     href: "/projects/personal-site",
-    status: "开发中",
+    status: "已上线 · 持续迭代",
     eyebrow: "WEB / INFRASTRUCTURE",
-    highlight: "从本地开发到 Docker、Nginx 与云服务器部署的完整实践。",
-    architecture: ["Browser", "Nginx", "Docker", "Next.js"],
+    highlight: "从本地开发、内容系统到 Docker、Nginx 与云服务器部署的完整实践。",
+    architecture: ["Browser", "DNS", "Nginx", "Docker", "Next.js"],
   },
   {
     title: "C++ 游戏服务器",
     description:
-      "计划实现包含 Gateway、Login、Game Server、Redis 和 MySQL 的迷你游戏服务器架构。",
-    tech: ["C++", "Linux", "Redis", "MySQL"],
+      "计划从网络层开始，逐步实现 Gateway、登录、游戏逻辑、缓存与数据持久化。",
+    tech: ["C++", "Linux", "TCP/IP", "CMake", "Redis", "MySQL"],
     href: "/projects/game-server",
-    status: "计划中",
+    status: "计划中 · 待开发",
     eyebrow: "C++ / DISTRIBUTED SYSTEM",
-    highlight: "拆解网关、登录、游戏逻辑与数据层之间的职责边界。",
-    architecture: ["Gateway", "Login", "Game", "Storage"],
+    highlight: "围绕连接管理、服务拆分、状态缓存与持久化建立可验证的学习项目。",
+    architecture: ["Client", "Gateway", "Login / Game", "Redis / MySQL"],
   },
 ];

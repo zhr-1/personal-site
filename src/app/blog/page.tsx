@@ -13,8 +13,9 @@ export default function BlogPage() {
   const posts = getAllPosts();
 
   return (
-    <main className="mx-auto min-h-[calc(100svh-8.5rem)] w-full max-w-3xl px-5 py-14 sm:px-8 sm:py-20">
+    <main className="mx-auto min-h-[calc(100svh-8.5rem)] w-full max-w-5xl px-5 py-14 sm:px-8 sm:py-20">
       <header className="mb-12">
+        <p className="font-mono text-xs tracking-[0.2em] text-emerald-600">BLOG</p>
         <h1 className="text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl">
           博客
         </h1>
@@ -23,7 +24,7 @@ export default function BlogPage() {
         </p>
       </header>
 
-      <div>
+      <div className="grid gap-5 md:grid-cols-2">
         {posts.map((post, index) => (
           <BlogCard
             key={post.slug}

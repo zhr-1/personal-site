@@ -19,16 +19,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://hrzou.cn"),
   title: {
-    default: "华仁的个人网站",
-    template: "%s | 华仁的个人网站",
+    default: "邹华仁的个人网站",
+    template: "%s | 邹华仁的个人网站",
   },
   description:
-    "华仁的个人技术网站，记录 C++ 服务端开发、Linux、网络编程、Redis、MySQL 和游戏服务器架构。",
-  applicationName: "华仁的个人网站",
-  authors: [{ name: "华仁" }],
-  creator: "华仁",
+    "邹华仁的个人技术网站，记录 C++ 服务端开发、Linux、网络编程、Redis、MySQL 和游戏服务器架构。",
+  applicationName: "邹华仁的个人网站",
+  authors: [{ name: "邹华仁" }],
+  creator: "邹华仁",
   keywords: [
-    "华仁",
+    "邹华仁",
     "C++ 服务端开发",
     "Linux",
     "网络编程",
@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "zh_CN",
     url: "/",
-    siteName: "华仁的个人网站",
-    title: "华仁的个人网站",
+    siteName: "邹华仁的个人网站",
+    title: "邹华仁的个人网站",
     description:
       "记录 C++ 服务端开发、Linux、网络编程和游戏服务器架构。",
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "华仁的个人网站",
+    title: "邹华仁的个人网站",
     description:
       "记录 C++ 服务端开发、Linux、网络编程和游戏服务器架构。",
     images: ["/og.png"],

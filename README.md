@@ -1,376 +1,149 @@
-# 华仁个人技术网站
+# 邹华仁个人技术网站
 
-这是我的个人技术网站，用于展示个人项目、技术博客以及服务端开发实践。
+这是我的个人技术网站，用于展示项目、发布 Markdown 技术博客，并记录 C++ 服务端、Linux、网络编程与游戏服务器架构的学习和实践。
 
-该项目不仅作为个人主页，同时也是一个持续迭代的工程实践项目，用于学习和实践：
+- 在线地址：[https://hrzou.cn](https://hrzou.cn)
+- GitHub：[https://github.com/zhr-1/personal-site](https://github.com/zhr-1/personal-site)
 
-- Web 前端开发
-- Linux 服务器部署
-- Docker 容器化
-- 云服务器运维
-- C++ 服务端架构设计
+## 当前状态
 
----
+网站 V1.0 已上线并持续迭代。
 
-## ✨ Features
+已实现：
 
-当前已实现：
+- [x] 响应式首页、项目列表、项目详情与关于页面
+- [x] 首页项目预览与最新两篇博客预览
+- [x] Markdown 博客列表和动态文章路由
+- [x] 文章 frontmatter、标签、日期排序和页面 metadata
+- [x] 日间 / 夜间主题切换与本地记忆
+- [x] 桌面导航与移动端 hamburger 菜单
+- [x] 自定义 404、favicon、Open Graph 图片
+- [x] sitemap、robots 和基础 SEO
+- [x] Docker Compose 生产部署
+- [x] Nginx 反向代理与 HTTPS
 
-- [x] 个人主页
-- [x] 项目展示
-- [x] 博客模块
-- [x] 项目详情页面
-- [x] 响应式页面布局
-- [x] TypeScript 类型支持
-- [x] ESLint 代码检查
+后续计划：
 
-计划实现：
+- [ ] 博客代码高亮、目录、阅读时间、标签页和搜索
+- [ ] C++ Backend API、后台管理与数据库
+- [ ] 自动化发布与运行状态监控
+- [ ] 继续开发 C++ 游戏服务器项目
 
-- [ ] Markdown 博客系统
-- [ ] SEO 优化
-- [ ] 深色/浅色主题切换
-- [ ] 后台管理系统
-- [ ] 用户评论系统
-- [ ] C++ Backend API
-- [ ] 游戏服务器项目展示
-
----
-
-# 技术栈
-
-## Frontend
+## 技术栈
 
 | 技术 | 用途 |
-| ---- | ---- |
-| Next.js | React 全栈 Web 框架 |
-| React | UI 构建 |
+| --- | --- |
+| Next.js 16 | App Router、静态页面与动态博客路由 |
+| React 19 | 页面与交互组件 |
 | TypeScript | 类型安全 |
-| Tailwind CSS | 样式开发 |
-| ESLint | 代码质量检查 |
+| Tailwind CSS 4 | 响应式布局与主题样式 |
+| gray-matter | 解析 Markdown frontmatter |
+| remark / remark-html | Markdown 转换为 HTML |
+| Docker / Docker Compose | 构建和运行生产容器 |
+| Nginx | HTTPS 与反向代理 |
 
+## 页面与路由
+
+| 路由 | 说明 |
+| --- | --- |
+| `/` | 首页、主要项目与最新文章 |
+| `/projects` | 项目列表 |
+| `/projects/personal-site` | 个人网站项目详情 |
+| `/projects/game-server` | 计划中的 C++ 游戏服务器项目 |
+| `/blog` | Markdown 博客列表 |
+| `/blog/[slug]` | Markdown 文章详情 |
+| `/about` | 关于我 |
+| `/sitemap.xml` | 网站地图 |
+| `/robots.txt` | 搜索引擎抓取规则 |
+
+## Markdown 博客
+
+文章保存在 `content/blog/*.md`。`src/lib/blog.ts` 负责读取文件、解析 frontmatter、生成 slug，并按日期倒序返回文章。
+
+新增文章只需创建 Markdown 文件，无需新增 React 页面：
+
+```md
+---
+title: "文章标题"
+description: "文章简介"
+date: "2026-09-06"
+tags:
+  - C++
+  - Linux
 ---
 
-## Development Environment
+# 正文标题
 
-开发环境：
-
-```
-Ubuntu 24.04 LTS
-Node.js 22
-npm
-Git
-Docker
-Docker Compose
+这里开始编写文章内容。
 ```
 
-本地开发环境：
+文件名会成为文章地址。例如 `network-notes.md` 对应 `/blog/network-notes`。
 
-```
-Windows
-    |
-    |
-VMware
-    |
-    |
-Ubuntu 24.04
-    |
-    |
-Next.js Development Server
-```
+## 项目结构
 
----
-
-# 项目结构
-
-```
-personal-site
-
-├── src
-│
-│   ├── app
-│   │   ├── blog
-│   │   │   ├── page.tsx
-│   │   │   ├── my-first-site
-│   │   │   └── cpp-server-notes
-│   │   │
-│   │   ├── projects
-│   │   │   ├── page.tsx
-│   │   │   ├── personal-site
-│   │   │   └── game-server
-│   │   │
-│   │   ├── page.tsx
+```text
+personal-site/
+├── content/
+│   └── blog/                    # Markdown 文章
+├── public/                      # 公共静态资源
+├── src/
+│   ├── app/
+│   │   ├── about/
+│   │   ├── blog/
+│   │   │   ├── [slug]/         # Markdown 动态文章页
+│   │   │   └── page.tsx        # 博客列表
+│   │   ├── projects/
+│   │   │   ├── game-server/
+│   │   │   ├── personal-site/
+│   │   │   └── page.tsx
+│   │   ├── not-found.tsx
+│   │   ├── robots.ts
+│   │   ├── sitemap.ts
 │   │   ├── layout.tsx
-│   │   └── globals.css
-│   │
-│   ├── components
-│   │   ├── Header.tsx
-│   │   ├── Footer.tsx
-│   │   ├── BlogCard.tsx
-│   │   └── ProjectCard.tsx
-│   │
-│   └── data
-│       ├── blogPosts.ts
-│       └── projects.ts
-│
-├── public
-│
-├── package.json
-├── next.config.ts
-├── tsconfig.json
-└── README.md
+│   │   └── page.tsx
+│   ├── components/              # 公共展示和交互组件
+│   ├── data/projects.ts         # 项目公共数据
+│   └── lib/blog.ts              # Markdown 博客数据层
+├── Dockerfile
+├── docker-compose.yml
+└── package.json
 ```
 
----
+## 本地开发
 
-# 本地运行
-
-## 1. 安装依赖
+建议使用 Node.js 22。
 
 ```bash
-npm install
-```
-
----
-
-## 2. 启动开发环境
-
-```bash
+npm ci
 npm run dev
 ```
 
-访问：
+打开 [http://localhost:3000](http://localhost:3000)。
 
-```
-http://localhost:3000
-```
-
-或者：
-
-```
-http://你的Ubuntu_IP:3000
-```
-
----
-
-# 常用命令
-
-## 开发模式
-
-```bash
-npm run dev
-```
-
----
-
-## 代码检查
+提交前执行：
 
 ```bash
 npm run lint
-```
-
----
-
-## 生产构建
-
-```bash
 npm run build
 ```
 
----
+## 生产部署
 
-## 启动生产版本
+当前请求链路：
+
+```text
+Browser → DNS → Nginx → Docker → Next.js
+```
+
+腾讯云服务器使用 Ubuntu 24.04。生产更新流程：
 
 ```bash
-npm run start
+git pull origin main
+docker compose up -d --build
 ```
 
----
+容器仅监听服务器本机的 `127.0.0.1:3000`，公网请求通过 Nginx 和 HTTPS 进入应用。
 
-# Docker 部署计划
+## 项目方向
 
-最终部署架构：
-
-```
-                 Internet
-
-                    |
-                    |
-
-                Nginx
-
-                    |
-                    |
-
-             Next.js Container
-
-                    |
-                    |
-
-          Backend API (Future)
-
-                    |
-        -----------------------
-        |                     |
-
-      MySQL                Redis
-```
-
----
-
-# 云服务器部署计划
-
-目标部署环境：
-
-```
-Tencent Cloud Ubuntu
-
-        |
-        |
-
-Docker
-
-        |
-        |
-
-Personal Website
-```
-
-部署流程：
-
-```
-Local Development
-
-        |
-
-       Git
-
-        |
-
-      GitHub
-
-        |
-
- Tencent Cloud
-
-        |
-
- Docker Deployment
-```
-
----
-
-# Future Backend Architecture
-
-未来计划实现 C++ 服务端系统：
-
-```
-Client
-
-  |
-
-Gateway
-
-  |
-
-Login Server
-
-  |
-
-Game Server
-
-  |
-
------------------
-
-|               |
-
-Redis          MySQL
-
-```
-
-技术方向：
-
-- C++17/C++20
-- Linux
-- TCP/IP
-- Socket
-- epoll
-- Redis
-- MySQL
-- Docker
-
----
-
-# Game Server Project Roadmap
-
-计划实现：
-
-## Phase 1
-
-基础服务器：
-
-- [ ] TCP Server
-- [ ] Event Loop
-- [ ] Connection Manager
-- [ ] Message Protocol
-
-
-## Phase 2
-
-游戏服务：
-
-- [ ] Gateway
-- [ ] Login Server
-- [ ] Room Server
-- [ ] Game Server
-
-
-## Phase 3
-
-分布式能力：
-
-- [ ] RPC
-- [ ] Service Discovery
-- [ ] Load Balance
-- [ ] Distributed Deployment
-
-
----
-
-# Git Workflow
-
-开发流程：
-
-```
-Modify Code
-
-    |
-
-git add
-
-    |
-
-git commit
-
-    |
-
-git push
-
-    |
-
-Deploy
-```
-
----
-
-# Author
-
-华仁
-
-Focus:
-
-- C++ Server Development
-- Linux System Programming
-- Network Programming
-- Game Server Architecture
-- Cloud Deployment
+个人网站完成 V1.0 后，将继续推进 C++ 游戏服务器项目，计划围绕 Gateway、Login Server、Game Server、Redis 和 MySQL 构建可验证的最小服务链路，并逐步补充压测和性能分析记录。
